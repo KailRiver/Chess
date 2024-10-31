@@ -1,11 +1,26 @@
-public class Queen extends Piece {
-    public Queen(boolean isWhite) {
-        super(isWhite);
+public class Queen extends ChessPiece {
+    public Queen(String color) {
+        super(color);
     }
 
     @Override
-    public boolean isValidMove(int x1, int y1, int x2, int y2) {
-        // Queen can move any number of squares in any direction (horizontally, vertically, or diagonally)
-        return x1 == x2 || y1 == y2 || Math.abs(x2 - x1) == Math.abs(y2 - y1);
+    public String getColor() {
+        return super.getColor();
+    }
+
+    @Override
+    public String getSymbol() {
+        return "Q";
+    }
+
+    public boolean canMoveToPosition(ChessBoard chessBoard, int line, int colum, int toLine, int toColum) {
+        if (isValidMove(chessBoard, line, colum, toLine, toColum)) {
+            return false;
+        }
+
+
+        int deltaLine = Math.abs(line - toLine);
+        int deltaColum = Math.abs(colum - toColum);
+        return (deltaLine == deltaColum) || line == toLine || colum == toColum;
     }
 }

@@ -1,11 +1,23 @@
-public class Rook extends Piece {
-    public Rook(boolean isWhite) {
-        super(isWhite);
+public class Rook extends ChessPiece {
+
+    public Rook(String color) {
+        super(color);
     }
 
     @Override
-    public boolean isValidMove(int x1, int y1, int x2, int y2) {
-        // Rook can move any number of squares horizontally or vertically
-        return x1 == x2 || y1 == y2;
+    public String getColor() {
+        return super.getColor();
+    }
+
+    @Override
+    public String getSymbol() {
+        return "R";
+    }
+
+    public boolean canMoveToPosition(ChessBoard chessBoard, int line, int colum, int toLine, int toColum) {
+        if (isValidMove(chessBoard, line, colum, toLine, toColum)) {
+            return false;
+        }
+        return line == toLine || colum == toColum;
     }
 }

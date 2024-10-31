@@ -1,11 +1,26 @@
-public class Bishop extends Piece {
-    public Bishop(boolean isWhite) {
-        super(isWhite);
+public class Bishop extends ChessPiece {
+
+    public Bishop(String color) {
+        super(color);
     }
 
     @Override
-    public boolean isValidMove(int x1, int y1, int x2, int y2) {
-        // Bishop can move any number of squares diagonally
-        return Math.abs(x2 - x1) == Math.abs(y2 - y1);
+    public String getColor() {
+        return super.getColor();
+    }
+
+    @Override
+    public String getSymbol() {
+        return "B";
+    }
+
+    public boolean canMoveToPosition(ChessBoard chessBoard, int line, int colum, int toLine, int toColum) {
+        if (isValidMove(chessBoard, line, colum, toLine, toColum)) {
+            return false;
+        }
+        int deltaLine = Math.abs(line - toLine);
+        int deltaColum = Math.abs(colum - toColum);
+
+        return (deltaColum == deltaLine);
     }
 }
